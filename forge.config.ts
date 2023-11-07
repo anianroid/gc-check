@@ -5,6 +5,7 @@ import { MakerZIP } from '@electron-forge/maker-zip'
 import { AutoUnpackNativesPlugin } from '@electron-forge/plugin-auto-unpack-natives'
 import { WebpackPlugin } from '@electron-forge/plugin-webpack'
 import type { ForgeConfig } from '@electron-forge/shared-types'
+import { MakerDMG } from '@electron-forge/maker-dmg'
 
 import { mainConfig } from './webpack.main.config'
 import { rendererConfig } from './webpack.renderer.config'
@@ -19,6 +20,7 @@ const config: ForgeConfig = {
     new MakerZIP({}, ['darwin']),
     new MakerRpm({}),
     new MakerDeb({}),
+    new MakerDMG({})
   ],
   plugins: [
     new AutoUnpackNativesPlugin({}),
