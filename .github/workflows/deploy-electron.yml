@@ -31,7 +31,12 @@ jobs:
 
     - name: Build Electron app
       run: npm run make
-
+      
+    - name: Download Build Artifacts
+      uses: actions/download-artifact@v2
+      with:
+        name: build-artifacts
+        
     - name: Deploy to Vercel
       env:
         VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
