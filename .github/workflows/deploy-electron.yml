@@ -32,19 +32,21 @@ jobs:
       uses: actions/setup-python@v4
       with:
           python-version: '3.11'
-
-    - name: Change directory to 'check_app'
-      run: cd check_app 
       
-    
     - name: Install dependencies
-      run: npm install
+      run: |
+        cd check_app
+        npm install
 
     - name: Lint the code
-      run: npm run lint
+      run: |
+        cd check_app
+        npm run lint
 
     - name: Make Electron app
-      run:  npm run make
+      run:  |
+        cd check_app
+        npm run make
 
     - uses: actions/upload-artifact@v3
       with:
