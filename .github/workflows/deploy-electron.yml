@@ -34,9 +34,7 @@ jobs:
           python-version: '3.11'
       
     - name: Install dependencies
-      run: |
-        cd check_app
-        npm install
+      run:  npm install
 
     - name: Lint the code
       run: |
