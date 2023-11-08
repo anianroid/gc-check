@@ -30,7 +30,7 @@ jobs:
           python-version: '3.11'
           
     - name: Install dependencies
-      run: npm clean install
+      run: npm install
 
     - name: Lint the code
       run: npm run lint
