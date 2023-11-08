@@ -12,7 +12,7 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
 
     steps:
     - name: checkout code
@@ -21,24 +21,24 @@ jobs:
     - name: Set up Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: 18
+        node-version: 18.17.1
         
+    # macOS: appears to fix https://github.com/electron/forge/issues/2807    
+    - name: Setup Python 3.11 (macOS)
+      uses: actions/setup-python@v4
+      with:
+          python-version: '3.11'
+          
     - name: Install dependencies
       run: npm install
 
     - name: Lint the code
       run: npm run lint
 
-    - name: Build Electron app
-      run: npm run make
-      
-    - name: Download Build Artifacts
-      uses: actions/download-artifact@v2
-      with:
-        name: build-artifacts
-        
-    - name: Deploy to Vercel
-      env:
-        VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-      run: npx vercel --prod
+    - name: Make Electron app
+      run:  npm run make
 
+    - uses: actions/upload-artifact@v3
+      with:
+          name: make.zip
+          path: out/make.zip
