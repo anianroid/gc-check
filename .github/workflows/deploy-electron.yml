@@ -5,13 +5,13 @@ name: Deploy Electron App
 
 on:
   push:
-    branches: [ check , main ]
-    paths:
-      - 'check_app/**'
+    branches: [ check ]
+    # paths:
+    #   - 'check_app/**'
   pull_request:
-    branches: [ check , main ]
-    paths:
-      - 'check_app/**'
+    branches: [ check ]
+    # paths:
+    #   - 'check_app/**'
 
 jobs:
   build:
@@ -26,7 +26,10 @@ jobs:
       uses: actions/setup-node@v2
       with:
         node-version: 18.17.1
-        
+
+    - name: Change directory to 'check_app'
+      run: cd check_app 
+      
     # macOS: appears to fix https://github.com/electron/forge/issues/2807    
     - name: Setup Python 3.11 (macOS)
       uses: actions/setup-python@v4
