@@ -23,13 +23,14 @@ jobs:
       with:
         node-version: 18.17.1
         
+    # macOS: appears to fix https://github.com/electron/forge/issues/2807    
     - name: Setup Python 3.11 (macOS)
       uses: actions/setup-python@v4
       with:
           python-version: '3.11'
           
     - name: Install dependencies
-      run: npm install
+      run: npm clean install
 
     - name: Lint the code
       run: npm run lint
