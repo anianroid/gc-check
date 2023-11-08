@@ -52,7 +52,7 @@ jobs:
       with:
         files: 'check_app/out/**/*.dmg'
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         
     - name: Upload Release Asset
       uses: actions/upload-release-asset@v1
@@ -62,4 +62,4 @@ jobs:
         asset_name: macApp.dmg
         asset_content_type: application/x-apple-diskimage
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
