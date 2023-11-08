@@ -31,9 +31,3 @@ jobs:
 
     - name: Make Electron app
       run:  npm run make
-
-    - name: Show make folder structure
-      run: |
-        echo "Electron make structure:"
-        ls -R
-      working-directory: /Users/runner/work/gc-check/gc-check/out/make
