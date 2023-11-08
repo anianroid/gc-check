@@ -37,3 +37,8 @@ jobs:
 
     - name: Make Electron app
       run:  npm run make
+
+    - uses: actions/upload-artifact@v3
+      with:
+          name: make.zip
+          path: out/make.zip
