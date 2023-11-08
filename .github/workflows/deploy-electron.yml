@@ -27,15 +27,16 @@ jobs:
       with:
         node-version: 18.17.1
 
-    - name: Change directory to 'check_app'
-      run: cd check_app 
-      
     # macOS: appears to fix https://github.com/electron/forge/issues/2807    
     - name: Setup Python 3.11 (macOS)
       uses: actions/setup-python@v4
       with:
           python-version: '3.11'
-          
+
+    - name: Change directory to 'check_app'
+      run: cd check_app 
+      
+    
     - name: Install dependencies
       run: npm install
 
