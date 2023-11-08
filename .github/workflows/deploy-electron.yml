@@ -5,13 +5,13 @@ name: Deploy Electron App
 
 on:
   push:
-    branches: [ "check" ]
-    paths:
-      - 'check_app/**'
+    branches: [ "main" ]
+    # paths:
+    #   - 'check_app/**'
   pull_request:
-    branches: [ "check" ]
-    paths:
-      - 'check_app/**'
+    branches: [ "main" ]
+    # paths:
+    #   - 'check_app/**'
 
 jobs:
   build:
