@@ -1,4 +1,4 @@
 import { createRoot } from 'react-dom/client'
 
 const root = createRoot(document.body)
-root.render(<h2>'Hdfsdgggsgsgsdg sdfsdfsd ssdgsdg</h2>)
+root.render(<h2>'Hdfsdfsdfsfsds</h2>)
