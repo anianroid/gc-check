@@ -34,6 +34,13 @@ jobs:
     - name: Install dependencies
       run:  npm install
 
+    - name: Set up macOS signing certificate
+      shell: bash
+      run: ./scripts/import-macos-cert.sh
+      env:
+        MACOS_CERT_PASSWORD: bLqQQ9mckr6DAne
+        MACOS_CERT_P12: ${{ secret.CERT }}
+
     - name: Lint the code
       run: |
         cd check_app
