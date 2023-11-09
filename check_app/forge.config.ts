@@ -36,7 +36,7 @@ const config: ForgeConfig = {
         // Note that we must provide this S3 URL here
         // in order to support smooth version transitions
         // especially when using a CDN to front your updates
-        macUpdateManifestBaseUrl: `https://ani-electron-auto-updater.s3.ap-south-1.amazonaws.com/gc-test/darwin/${arch}/RELEASES.json`,
+        macUpdateManifestBaseUrl: `https://ani-electron-auto-updater.s3.ap-south-1.amazonaws.com/gc-test/darwin/RELEASES.json`,
       }),
     },
     {
