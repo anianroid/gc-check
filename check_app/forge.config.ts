@@ -32,7 +32,7 @@ const config: ForgeConfig = {
     new MakerDMG({}),
     {
       name: "@electron-forge/maker-zip",
-      config: (arch) => ({
+      config: () => ({
         // Note that we must provide this S3 URL here
         // in order to support smooth version transitions
         // especially when using a CDN to front your updates
@@ -41,10 +41,10 @@ const config: ForgeConfig = {
     },
     {
       name: "@electron-forge/maker-squirrel",
-      config: (arch) => ({
+      config: () => ({
         // Note that we must provide this S3 URL here
         // in order to generate delta updates
-        remoteReleases: `https://ani-electron-auto-updater.s3.ap-south-1.amazonaws.com/gc-test/win32/${arch}`,
+        remoteReleases: `https://ani-electron-auto-updater.s3.ap-south-1.amazonaws.com/gc-test/win32`,
       }),
     },
   ],
