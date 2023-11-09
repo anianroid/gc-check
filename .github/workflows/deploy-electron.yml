@@ -50,19 +50,3 @@ jobs:
           cd check_app
           npm run make
 
-      - name: Create Release
-        id: create_release
-        run: npm run semantic-release
-
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-
-      - name: Upload Release Asset
-        uses: actions/upload-artifact@v3
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: check_app/out/**/*.dmg
-          asset_name: macApp.dmg
-          asset_content_type: application/x-apple-diskimage
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
