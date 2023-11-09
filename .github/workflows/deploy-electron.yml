@@ -35,7 +35,7 @@ jobs:
 
       - name: Set up macOS signing certificate
         shell: bash
-        run: ./scripts/import-macos-cert.sh
+        run: bash ./scripts/import-macos-cert.sh
         env:
           MACOS_CERT_PASSWORD: bLqQQ9mckr6DAne
           MACOS_CERT_P12: ${{ secrets.CERT }}
