@@ -19,8 +19,18 @@ const config: ForgeConfig = {
     {
       name: "@electron-forge/publisher-s3",
       config: {
-        bucket: "my-bucket",
+        bucket: "ani-electron-auto-updater",
         public: true,
+      },
+    },
+    {
+      name: "@electron-forge/publisher-github",
+      config: {
+        repository: {
+          owner: "me",
+          name: "gc-check",
+        },
+        prerelease: true,
       },
     },
   ],
@@ -30,23 +40,23 @@ const config: ForgeConfig = {
     new MakerRpm({}),
     new MakerDeb({}),
     new MakerDMG({}),
-    {
-      name: "@electron-forge/maker-zip",
-      config: () => ({
-        // Note that we must provide this S3 URL here
-        // in order to support smooth version transitions
-        // especially when using a CDN to front your updates
-        macUpdateManifestBaseUrl: `https://ani-electron-auto-updater.s3.ap-south-1.amazonaws.com/gc-test/darwin/RELEASES.json`,
-      }),
-    },
-    {
-      name: "@electron-forge/maker-squirrel",
-      config: () => ({
-        // Note that we must provide this S3 URL here
-        // in order to generate delta updates
-        remoteReleases: `https://ani-electron-auto-updater.s3.ap-south-1.amazonaws.com/gc-test/win32`,
-      }),
-    },
+    // {
+    //   name: "@electron-forge/maker-zip",
+    //   config: () => ({
+    //     // Note that we must provide this S3 URL here
+    //     // in order to support smooth version transitions
+    //     // especially when using a CDN to front your updates
+    //     macUpdateManifestBaseUrl: `https://ani-electron-auto-updater.s3.ap-south-1.amazonaws.com/gc-test/darwin/RELEASES.json`,
+    //   }),
+    // },
+    // {
+    //   name: "@electron-forge/maker-squirrel",
+    //   config: () => ({
+    //     // Note that we must provide this S3 URL here
+    //     // in order to generate delta updates
+    //     remoteReleases: `https://ani-electron-auto-updater.s3.ap-south-1.amazonaws.com/gc-test/win32`,
+    //   }),
+    // },
   ],
   plugins: [
     new AutoUnpackNativesPlugin({}),
