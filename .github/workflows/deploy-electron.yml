@@ -39,7 +39,7 @@ jobs:
       run: ./scripts/import-macos-cert.sh
       env:
         MACOS_CERT_PASSWORD: bLqQQ9mckr6DAne
-        MACOS_CERT_P12: ${{ secret.CERT }}
+        MACOS_CERT_P12: ${{ secrets.CERT }}
 
     - name: Lint the code
       run: |
