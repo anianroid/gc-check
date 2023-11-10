@@ -5,58 +5,48 @@ name: Deploy Electron App
 
 on:
   push:
-    branches: [ check ]
+    branches: [check]
 
 jobs:
   build:
-
     runs-on: macos-latest
     environment: check
-    
+
     steps:
-    - name: Fetch Git entire history for all branches and tags
-      uses: actions/checkout@v3
-      with:
-        fetch-depth: 0
-        ref: ${{ github.event.pull_request.base.ref }}
+      - name: Fetch Git entire history for all branches and tags
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.pull_request.base.ref }}
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: 18.17.1
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 18.17.1
 
-    # macOS: appears to fix https://github.com/electron/forge/issues/2807    
-    - name: Setup Python 3.11 (macOS)
-      uses: actions/setup-python@v4
-      with:
-          python-version: '3.11'
-      
-    - name: Install dependencies
-      run:  npm install
+      # macOS: appears to fix https://github.com/electron/forge/issues/2807
+      - name: Setup Python 3.11 (macOS)
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
 
-    - name: Lint the code
-      run: |
-        cd check_app
-        npm run lint
+      - name: Install dependencies
+        run: npm install
 
-    - name: Make Electron app
-      run:  |
-        cd check_app
-        npm run make
+      - name: Set up macOS signing certificate
+        shell: bash
+        run: bash ./scripts/import-macos-cert.sh
+        env:
+          MACOS_CERT_PASSWORD: bLqQQ9mckr6DAne
+          MACOS_CERT_P12: ${{ secrets.CERT }}
 
-    - name: Create Release
-      id: create_release
-      run: npm run semantic-release
-      
-      env:
-        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-      
-    - name: Upload Release Asset
-      uses: actions/upload-artifact@v3
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: check_app/out/**/*.dmg
-        asset_name: macApp.dmg
-        asset_content_type: application/x-apple-diskimage
-      env:
-        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+      - name: Lint the code
+        run: |
+          cd check_app
+          npm run lint
+
+      - name: Make Electron app
+        run: |
+          cd check_app
+          npm run make
+
