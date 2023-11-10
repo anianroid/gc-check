@@ -16,18 +16,18 @@ const config: ForgeConfig = {
   },
   rebuildConfig: {},
   publishers: [
-    {
-      name: "@electron-forge/publisher-s3",
-      config: {
-        bucket: "ani-electron-auto-updater",
-        public: true,
-      },
-    },
+    // {
+    //   name: "@electron-forge/publisher-s3",
+    //   config: {
+    //     bucket: "ani-electron-auto-updater",
+    //     public: true,
+    //   },
+    // },
     {
       name: "@electron-forge/publisher-github",
       config: {
         repository: {
-          owner: "me",
+          owner: "anianroid",
           name: "gc-check",
         },
         prerelease: true,

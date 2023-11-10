@@ -10,36 +10,71 @@ if (require("electron-squirrel-startup")) {
   app.quit();
 }
 
-const server = "https://ani-electron-auto-updater.s3.ap-south-1.amazonaws.com";
-const url = `gc-test/${app.getVersion()}`;
+function initAutoUpdater() {
+  const server = 'https://github.com/anianroid/gc-check';
+  const feed = `${server}/releases/download/v${app.getVersion()}`;
 
-autoUpdater.setFeedURL({ url });
+  autoUpdater.setFeedURL({ url: feed });
 
-setInterval(() => {
-  autoUpdater.checkForUpdates();
-}, 60000);
-
-let info: "info";
-
-autoUpdater.on("update-downloaded", (event, releaseNotes, releaseName) => {
-  const dialogOpts = {
-    type: info,
-    buttons: ["Restart", "Later"],
-    title: "Application Update",
-    message: process.platform === "win32" ? releaseNotes : releaseName,
-    detail:
-      "A new version has been downloaded. Restart the application to apply the updates.",
-  };
-
-  dialog.showMessageBox(dialogOpts).then((returnValue) => {
-    if (returnValue.response === 0) autoUpdater.quitAndInstall();
+  autoUpdater.on('checking-for-update', () => {
+    console.log('Checking for update...');
   });
-});
 
-autoUpdater.on("error", (message) => {
-  console.error("There was a problem updating the application");
-  console.error(message);
-});
+  autoUpdater.on('update-available', () => {
+    console.log('Update available. Downloading...');
+  });
+
+  autoUpdater.on('update-not-available', () => {
+    console.log('No update available.');
+  });
+
+  autoUpdater.on('error', (err) => {
+    console.error('Error in auto-updater:', err);
+  });
+
+  autoUpdater.on('update-downloaded', () => {
+    console.log('Update downloaded. Installing...');
+    autoUpdater.quitAndInstall();
+  });
+
+  // Check for updates when the app is ready
+  app.whenReady().then(() => {
+    autoUpdater.checkForUpdates();
+  });
+}
+
+app.on('ready', initAutoUpdater);
+
+// const server = "https://github.com/anianroid/gc-check";
+// const url = `gc-test/${app.getVersion()}`;
+
+// autoUpdater.setFeedURL({ url });
+
+// setInterval(() => {
+//   autoUpdater.checkForUpdates();
+// }, 60000);
+
+// let info: "info";
+
+// autoUpdater.on("update-downloaded", (event, releaseNotes, releaseName) => {
+//   const dialogOpts = {
+//     type: info,
+//     buttons: ["Restart", "Later"],
+//     title: "Application Update",
+//     message: process.platform === "win32" ? releaseNotes : releaseName,
+//     detail:
+//       "A new version has been downloaded. Restart the application to apply the updates.",
+//   };
+
+//   dialog.showMessageBox(dialogOpts).then((returnValue) => {
+//     if (returnValue.response === 0) autoUpdater.quitAndInstall();
+//   });
+// });
+
+// autoUpdater.on("error", (message) => {
+//   console.error("There was a problem updating the application");
+//   console.error(message);
+// });
 
 const createWindow = (): void => {
   // Create the browser window.
