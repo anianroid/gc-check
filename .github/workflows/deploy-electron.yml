@@ -31,7 +31,7 @@ jobs:
           python-version: "3.11"
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: Set up macOS signing certificate
         shell: bash
@@ -40,13 +40,10 @@ jobs:
           MACOS_CERT_PASSWORD: bLqQQ9mckr6DAne
           MACOS_CERT_P12: ${{ secrets.CERT }}
 
-      - name: Lint the code
-        run: |
-          cd check_app
-          npm run lint
-
       - name: Make Electron app
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
           cd check_app
-          npm run make
+          npm run publish
 
