@@ -30,7 +30,7 @@ const config: ForgeConfig = {
           owner: "anianroid",
           name: "gc-check",
         },
-        prerelease: true,
+        releaseType: "draft"
       },
     },
   ],
