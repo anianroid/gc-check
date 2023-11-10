@@ -4,7 +4,9 @@
 name: Deploy Electron App
 
 on:
-  workflow_dispatch:
+  push:
+    tags:
+      - '*'
 
 jobs:
   build:
