@@ -30,7 +30,7 @@ jobs:
           python-version: "3.11"
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: Set up macOS signing certificate
         shell: bash
