@@ -8,9 +8,9 @@
     "start": "electron-forge start",
     "package": "electron-forge package",
     "make": "electron-forge make",
-    "test: "jest",
     "publish": "cross-env GITHUB_TOKEN=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 electron-forge publish",
-    "lint": "eslint --ext .ts,.tsx ."
+    "lint": "eslint --ext .ts,.tsx .",
+    "test": "jest"
   },
   "keywords": [],
   "author": {
