@@ -5,7 +5,8 @@ name: Deploy Electron App
 
 on:
   push:
-    branches: [check]
+    tags:
+      - '*'
 
 jobs:
   build:
@@ -41,7 +42,6 @@ jobs:
           MACOS_CERT_P12: ${{ secrets.CERT }}
 
       - name: Make Electron app
-        if: startsWith(github.ref, 'refs/tags/v')
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
