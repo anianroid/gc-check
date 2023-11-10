@@ -52,12 +52,5 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "update-electron-app": "^3.0.0"
-  },
-  "publish": {
-    "provider": "github",
-    "owner": "anianroid",
-    "repo": "gc-check",
-    "prerelease": true,
-    "authToken": "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"
   }
 }
