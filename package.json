@@ -6,7 +6,10 @@
   "main": ".webpack/main",
   "scripts": {
     "start": "electron-forge start",
-    "package": "electron-forge package"
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "publish": "cross-env GITHUB_TOKEN=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 electron-forge publish",
+    "lint": "eslint --ext .ts,.tsx ."
   },
   "keywords": [],
   "author": {
@@ -23,13 +26,16 @@
     "@electron-forge/maker-zip": "^6.4.2",
     "@electron-forge/plugin-auto-unpack-natives": "^6.4.2",
     "@electron-forge/plugin-webpack": "^6.4.2",
+    "@electron-forge/publisher-github": "^6.4.2",
     "@types/electron": "^1.6.10",
     "@types/react": "^18.2.36",
     "@types/react-dom": "^18.2.14",
     "@typescript-eslint/eslint-plugin": "^5.62.0",
     "@typescript-eslint/parser": "^5.62.0",
     "@vercel/webpack-asset-relocator-loader": "^1.7.3",
+    "cross-env": "^7.0.3",
     "css-loader": "^6.8.1",
+    "dotenv": "^16.3.1",
     "electron": "27.0.3",
     "eslint": "^8.53.0",
     "eslint-plugin-import": "^2.29.0",
@@ -41,10 +47,17 @@
     "typescript": "~4.5.4"
   },
   "dependencies": {
-    "@electron-forge/publisher-s3": "^6.4.2",
+    "@electron-forge/publisher-github": "^6.4.2",
     "electron-squirrel-startup": "^1.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "update-electron-app": "^3.0.0"
+  },
+  "publish": {
+    "provider": "github",
+    "owner": "anianroid",
+    "repo": "gc-check",
+    "prerelease": true,
+    "authToken": "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"
   }
 }
