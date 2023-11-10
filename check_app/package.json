@@ -1,14 +1,14 @@
 {
   "name": "checkapp",
   "productName": "checkapp",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "My Electron application description",
   "main": ".webpack/main",
   "scripts": {
     "start": "electron-forge start",
     "package": "electron-forge package",
     "make": "electron-forge make",
-    "publish": "cross-env GITHUB_TOKEN=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 electron-forge publish --version 1.3.0",
+    "publish": "cross-env GITHUB_TOKEN=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 electron-forge publish --version 1.4.0",
     "lint": "eslint --ext .ts,.tsx ."
   },
   "keywords": [],
