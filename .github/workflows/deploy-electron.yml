@@ -45,4 +45,8 @@ jobs:
         run: |
           cd check_app
           npm run publish
-
+      - name: Save output as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: my-output
+          path: /Users/runner/work/anianroid/gc-check/check_app/out/make
