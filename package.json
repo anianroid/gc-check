@@ -49,6 +49,7 @@
   },
   "dependencies": {
     "@electron-forge/publisher-github": "^6.4.2",
+    "electron-forge": "^5.2.4",
     "electron-squirrel-startup": "^1.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

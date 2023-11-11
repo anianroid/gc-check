@@ -16,13 +16,17 @@ const config: ForgeConfig = {
   },
   rebuildConfig: {},
   publishers: [
-    // {
-    //   name: "@electron-forge/publisher-s3",
-    //   config: {
-    //     bucket: "ani-electron-auto-updater",
-    //     public: true,
-    //   },
-    // },
+    {
+      name: "@electron-forge/publisher-s3",
+      config: {
+        bucket: "ani-electron-auto-updater",
+        endpoint:
+          "https://ani-electron-auto-updater.s3.ap-south-1.amazonaws.com",
+        folder: "gc-test", // IMPORTANT: always use the same folder
+        region: "ap-south-1",
+        public: true, // Necessary for serverless
+      },
+    },
     {
       name: "@electron-forge/publisher-github",
       config: {
@@ -30,7 +34,8 @@ const config: ForgeConfig = {
           owner: "anianroid",
           name: "gc-check",
         },
-        releaseType: "draft"
+        prerelease: false,
+        draft: true,
       },
     },
   ],
@@ -75,6 +80,7 @@ const config: ForgeConfig = {
           },
         ],
       },
+      port: 3003,
     }),
   ],
 };
